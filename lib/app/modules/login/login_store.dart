@@ -17,6 +17,9 @@ abstract class _LoginStoreBase with Store {
   @observable
   bool rememberCheckBox = false;
 
+  @observable
+  FlutterLogoStyle logoStyle = FlutterLogoStyle.markOnly;
+
   @computed
   bool get canLogin => !error.hasErrors;
 
@@ -42,6 +45,13 @@ abstract class _LoginStoreBase with Store {
   @action
   void setRememberCheckBox(bool? value) {
     rememberCheckBox = value ?? false;
+  }
+
+  @action
+  void animateLogo() {
+    logoStyle = logoStyle == FlutterLogoStyle.markOnly
+        ? FlutterLogoStyle.horizontal
+        : FlutterLogoStyle.markOnly;
   }
 
   void dispose() {

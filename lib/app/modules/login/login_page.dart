@@ -43,11 +43,16 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: Column(
             children: [
-              FlutterLogo(
-                style: FlutterLogoStyle.horizontal,
-                textColor: Colors.black,
-                size: 150,
-              ),
+              Observer(builder: (_) {
+                return GestureDetector(
+                  onTap: store.animateLogo,
+                  child: FlutterLogo(
+                    style: store.logoStyle,
+                    textColor: Colors.black,
+                    size: 150,
+                  ),
+                );
+              }),
               Container(
                 height: 430,
                 width: 430,

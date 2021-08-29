@@ -62,6 +62,21 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     });
   }
 
+  final _$logoStyleAtom = Atom(name: '_LoginStoreBase.logoStyle');
+
+  @override
+  FlutterLogoStyle get logoStyle {
+    _$logoStyleAtom.reportRead();
+    return super.logoStyle;
+  }
+
+  @override
+  set logoStyle(FlutterLogoStyle value) {
+    _$logoStyleAtom.reportWrite(value, super.logoStyle, () {
+      super.logoStyle = value;
+    });
+  }
+
   final _$_LoginStoreBaseActionController =
       ActionController(name: '_LoginStoreBase');
 
@@ -99,11 +114,23 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   }
 
   @override
+  void animateLogo() {
+    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
+        name: '_LoginStoreBase.animateLogo');
+    try {
+      return super.animateLogo();
+    } finally {
+      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 username: ${username},
 password: ${password},
 rememberCheckBox: ${rememberCheckBox},
+logoStyle: ${logoStyle},
 canLogin: ${canLogin}
     ''';
   }
