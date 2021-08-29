@@ -99,10 +99,12 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }),
                     SizedBox(height: 10),
-                    CustomCheckBox(
-                        onChanged: (value) {},
-                        isChecked: true,
-                        text: "Remember me"),
+                    Observer(builder: (_) {
+                      return CustomCheckBox(
+                          onChanged: store.setRememberCheckBox,
+                          isChecked: store.rememberCheckBox,
+                          text: "Remember me");
+                    }),
                     SizedBox(height: 20),
                     Container(
                       height: 35,

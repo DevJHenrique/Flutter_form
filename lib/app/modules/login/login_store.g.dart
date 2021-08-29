@@ -47,6 +47,21 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     });
   }
 
+  final _$rememberCheckBoxAtom = Atom(name: '_LoginStoreBase.rememberCheckBox');
+
+  @override
+  bool get rememberCheckBox {
+    _$rememberCheckBoxAtom.reportRead();
+    return super.rememberCheckBox;
+  }
+
+  @override
+  set rememberCheckBox(bool value) {
+    _$rememberCheckBoxAtom.reportWrite(value, super.rememberCheckBox, () {
+      super.rememberCheckBox = value;
+    });
+  }
+
   final _$_LoginStoreBaseActionController =
       ActionController(name: '_LoginStoreBase');
 
@@ -73,10 +88,22 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   }
 
   @override
+  void setRememberCheckBox(bool? value) {
+    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
+        name: '_LoginStoreBase.setRememberCheckBox');
+    try {
+      return super.setRememberCheckBox(value);
+    } finally {
+      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 username: ${username},
 password: ${password},
+rememberCheckBox: ${rememberCheckBox},
 canLogin: ${canLogin}
     ''';
   }

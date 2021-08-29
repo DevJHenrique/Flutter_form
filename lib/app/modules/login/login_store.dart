@@ -14,6 +14,9 @@ abstract class _LoginStoreBase with Store {
   @observable
   String password = '';
 
+  @observable
+  bool rememberCheckBox = false;
+
   @computed
   bool get canLogin => !error.hasErrors;
 
@@ -34,6 +37,11 @@ abstract class _LoginStoreBase with Store {
   @action
   void validatePassword(String value) {
     error.password = isNull(value) || value.isEmpty ? 'Cannot be blank' : null;
+  }
+
+  @action
+  void setRememberCheckBox(bool? value) {
+    rememberCheckBox = value ?? false;
   }
 
   void dispose() {
